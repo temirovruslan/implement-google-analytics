@@ -5,9 +5,11 @@ import Script from "next/script";
 
 import * as ga from "../lib/google-analytics";
 
+const SECRET = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+
 function MyApp({ Component, pageProps }) {
 	const router = useRouter();
-
+	console.log('googleAnalyticsId >>>', SECRET);
 	useEffect(() => {
 		const handleRouteChange = (url) => {
 			ga.pageview(url);
@@ -21,7 +23,7 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<>
 			<Script
-				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
+				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.SECRET}`}
 				strategy="afterInteractive"
 			/>
 			<Script id="google-analytics-script" strategy="afterInteractive">
@@ -30,7 +32,7 @@ function MyApp({ Component, pageProps }) {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}');
+          gtag('config', '${process.env.SECRET}');
         `}
 			</Script>
 			<Component {...pageProps} />
