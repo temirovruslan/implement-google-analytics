@@ -5,7 +5,7 @@ import Script from "next/script";
 
 import * as ga from "../lib/google-analytics";
 
-const SECRET = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+// const SECRET = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
 function MyApp({ Component, pageProps }) {
 	const router = useRouter();
@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<>
 			<Script
-				src={`https://www.googletagmanager.com/gtag/js?id=${SECRET}`}
+				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
 				strategy="afterInteractive"
 			/>
 			<Script id="google-analytics-script" strategy="afterInteractive">
@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', '${SECRET}');
+          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
         `}
 			</Script>
 			<Component {...pageProps} />
