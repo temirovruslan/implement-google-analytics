@@ -9,7 +9,7 @@ const SECRET = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
 function MyApp({ Component, pageProps }) {
 	const router = useRouter();
-	console.log('googleAnalyticsId >>>', SECRET);
+	// console.log('googleAnalyticsId >>>', SECRET);
 	useEffect(() => {
 		const handleRouteChange = (url) => {
 			ga.pageview(url);
@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<>
 			<Script
-				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.SECRET}`}
+				src={`https://www.googletagmanager.com/gtag/js?id=${SECRET}`}
 				strategy="afterInteractive"
 			/>
 			<Script id="google-analytics-script" strategy="afterInteractive">
@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', '${process.env.SECRET}');
+          gtag('config', '${SECRET}');
         `}
 			</Script>
 			<Component {...pageProps} />
